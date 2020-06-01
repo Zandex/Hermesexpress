@@ -58,6 +58,29 @@ if (err) {
     });
   });
 
+  app.get('/getuserid', function(req, response) {
+    //res.send('id: ' + req.query.id);
+
+    const db = client.db('integrador');
+    const collection = db.collection('user');
+    // return updated list
+    collection.findOne({'ID': req.query.id}, (err, item) => {
+      response.json(item);
+    });
+  });
+
+  app.put('/putuserid', function(req, response) {
+    //res.send('id: ' + req.query.id);
+
+    const db = client.db('integrador');
+    const collection = db.collection('user');
+    // return updated list
+    collection.updateOne({'ID': req.query.id}, {'$set': {'productos': req.query.productos}}, (err, item) => {
+      response.json(item);
+    })
+
+  });
+
   app.get("/getmuseo", (request, response) => {
     const db = client.db('integrador');
     const collection = db.collection('museo');
