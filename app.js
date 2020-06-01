@@ -66,6 +66,18 @@ if (err) {
       response.json(items);
     });
   });
+
+  app.get('/getmuseoid', function(req, response) {
+    //res.send('id: ' + req.query.id);
+
+    const db = client.db('integrador');
+    const collection = db.collection('museo');
+    // return updated list
+    collection.find({'cluster':req.query.cluster}).toArray((err, items) => {
+      response.json(items);
+    });
+  });
+
   app.get("/getalojamiento", (request, response) => {
     const db = client.db('integrador');
     const collection = db.collection('alojamiento');
@@ -74,6 +86,18 @@ if (err) {
       response.json(items);
     });
   });
+
+  app.get('/getalojamientoid', function(req, response) {
+    //res.send('id: ' + req.query.id);
+
+    const db = client.db('integrador');
+    const collection = db.collection('alojamiento');
+    // return updated list
+    collection.find({'cluster':req.query.cluster}).toArray((err, items) => {
+      response.json(items);
+    });
+  });
+
 })
 //*/
 
